@@ -15,7 +15,7 @@ function App() {
         >
           Grass Theme
         </Button>
-        <Button component="a" onClick={() => changeTheme("fire")}>
+        <Button onClick={() => changeTheme("fire")}>
           Fire Theme
         </Button>
       </header>
