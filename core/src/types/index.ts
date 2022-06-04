@@ -1,7 +1,7 @@
-import { CSSProperties } from "react";
+import React, { CSSProperties } from "react";
 import { CSS } from "../theme/stitches.config";
-// Component Types
 
+// Component Types
 type ExtendedProps<_ExtendedProps = {}, OverrideProps = {}> = OverrideProps &
   Omit<_ExtendedProps, keyof OverrideProps>;
 
@@ -36,7 +36,6 @@ export interface DefaultProps<T extends string = never> {
 }
 
 // Theme and Styling Types
-
 declare namespace ConfigType {
   export type Theme<T = {}> = {
     fonts?: { [token in number | string]: boolean | number | string };
@@ -72,3 +71,48 @@ export type Theme = {
   className?: string;
   customTheme?: BaseTheme;
 };
+
+// Locale Types
+export type Locale = {
+  locale: string;
+  global: {
+    loading: string;
+  };
+};
+
+export type LocaleContextProps = Partial<Locale> & { exist?: boolean };
+
+export type LocaleProviderProps = {
+  locale: Locale;
+  children?: React.ReactNode;
+};
+
+export type LocaleComponentName = Exclude<keyof Locale, "locale">;
+
+export interface LocaleReceiverProps<
+  C extends LocaleComponentName = LocaleComponentName
+> {
+  componentName?: C;
+  defaultLocale?: Locale[C] | (() => Locale[C]);
+  children: (
+    locale: Locale[C],
+    localeCode?: string,
+    fullLocale?: object
+  ) => JSX.Element;
+}
+
+//Config Types
+export interface ConfigProviderProps {
+  locale?: Locale;
+  defaultTheme?: ThemeType;
+  children?: React.ReactNode;
+}
+export interface ConfigConsumerProps {
+  locale?: Locale;
+  defaultTheme?: ThemeType;
+}
+
+export interface ProviderChildrenProps extends ConfigProviderProps {
+  parentContext: ConfigConsumerProps;
+  legacyLocale: Locale;
+}

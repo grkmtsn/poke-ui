@@ -1,13 +1,13 @@
 import * as React from "react";
-import { ThemeType } from "../types";
-import { createTheme } from "./stitches.config";
+import { ThemeType } from "../../types";
+import { createTheme } from "../../theme/stitches.config";
 
 type AvailableThemes = {
   [x: string]: string;
 };
 
 type ThemeProviderProps = {
-  theme?: ThemeType;
+  defaultTheme?: ThemeType;
   children: React.ReactNode;
 };
 
@@ -82,15 +82,18 @@ const useTheme = (
   return [currentTheme, changeTheme];
 };
 
-const ThemeProvider = ({ theme, children }: ThemeProviderProps) => {
-  const [currentTheme, changeTheme] = useTheme(theme);
+const ThemeProvider = ({ defaultTheme, children }: ThemeProviderProps) => {
+  const [currentTheme, changeTheme] = useTheme(defaultTheme);
+  const memoizedValue = React.useMemo(
+    () => ({
+      theme: currentTheme,
+      changeTheme: changeTheme,
+    }),
+    [currentTheme, changeTheme]
+  );
+
   return (
-    <ThemeContext.Provider
-      value={{
-        theme: currentTheme,
-        changeTheme: changeTheme,
-      }}
-    >
+    <ThemeContext.Provider value={memoizedValue}>
       {children}
     </ThemeContext.Provider>
   );
