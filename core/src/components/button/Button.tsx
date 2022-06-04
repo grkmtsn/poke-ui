@@ -7,7 +7,16 @@ import {
 
 import { StyledButton } from "./styles";
 
+type Colors = "default" | "success" | "error" | "warning";
+type Shapes = "rounded" | "squared" | "pill";
+
 export interface SharedButtonProps extends DefaultProps {
+  /** Button Color Theme */
+  color?: Colors;
+
+  /** Button Shape */
+  shape?: Shapes;
+
   /** Button label */
   children?: React.ReactNode;
 }
@@ -22,9 +31,9 @@ type ButtonComponent = (<C = "button">(
 
 const Button: ButtonComponent = forwardRef(
   (props: ButtonProps<"button">, ref: PolymorphicRef<"button">) => {
-    const { children, ...rest } = props;
+    const { shape = "squared", color = "default", children, ...rest } = props;
     return (
-      <StyledButton ref={ref} {...rest}>
+      <StyledButton shape={shape} color={color} ref={ref} {...rest}>
         {children}
       </StyledButton>
     );

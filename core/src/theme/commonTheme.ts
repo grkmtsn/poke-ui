@@ -9,6 +9,11 @@ const breakpoints = {
 export const commonTheme = {
   prefix: "poke",
   theme: {
+    colors: {
+      successBg: "#EEFADC",
+      errorBg: "#FFF1E7",
+      warningBg: "#FFF4D5",
+    },
     space: {
       none: "0rem",
       xs: "0.5rem",
@@ -106,8 +111,8 @@ export const commonTheme = {
       base: "14px",
       lg: "14px",
       xl: "18px",
-      squared: "33%",
-      rounded: "50%",
+      squared: "2px",
+      rounded: "8px",
       pill: "9999px",
     },
     shadows: {},

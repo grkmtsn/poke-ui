@@ -6,13 +6,29 @@ import { grassThemeTokens } from "./themes/grass";
 import { fireThemeTokens } from "./themes/fire";
 
 import merge from "../utils/merge";
+import { getTokenValue } from "../utils/getTokenValue";
+
 import { Theme } from "../types";
+import { adjustColor } from "../utils/adjustColor";
 
 const stitches = createStitches({
   ...commonTheme,
   theme: {
     ...commonTheme.theme,
     ...grassThemeTokens,
+    colors: {
+      ...commonTheme.theme.colors,
+      ...grassThemeTokens.colors,
+    },
+  },
+  utils: {
+    adjustColor: (value: string) => {
+      const colorValue = getTokenValue("colors", value);
+      const darkerColor = adjustColor(colorValue, -70);
+      return {
+        color: darkerColor,
+      };
+    },
   },
 });
 

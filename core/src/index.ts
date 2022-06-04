@@ -1,3 +1,4 @@
+export { styled, css, keyframes } from "./theme/stitches.config";
 export { useThemeContext } from "./config/ThemeProvider/ThemeProvider";
 export { default as ConfigProvider } from "./config/ConfigProvider";
 

@@ -1,23 +1,32 @@
-import { Button, useThemeContext, Loader } from "@poke-ui/core";
+import { Button, useThemeContext, Loader, styled } from "@poke-ui/core";
+
+const Box = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
+});
 
 function App() {
   const { theme, changeTheme } = useThemeContext();
   return (
-    <div className="App">
-      <header className="App-header">
-        <Loader />
-        <p>Theme is: {theme}</p>
-        <Button
-          css={{
-            marginRight: "$md",
-          }}
-          onClick={() => changeTheme("grass")}
-        >
-          Grass Theme
-        </Button>
-        <Button onClick={() => changeTheme("fire")}>Fire Theme</Button>
-      </header>
-    </div>
+    <Box>
+      <Loader />
+      <p>Theme is: {theme}</p>
+      <Button
+        shape="pill"
+        css={{
+          marginBottom: "$md",
+        }}
+        onClick={() => changeTheme("grass")}
+        color="success"
+      >
+        Grass Theme
+      </Button>
+      <Button shape="squared" onClick={() => changeTheme("fire")} color="error">
+        Fire Theme
+      </Button>
+    </Box>
   );
 }
 

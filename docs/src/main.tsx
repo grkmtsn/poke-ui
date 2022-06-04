@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import { Button, ConfigProvider, tr_TR } from "@poke-ui/core";
 
 import App from "./App";
-import "./index.css";
 
 const AppProviders = () => {
   const [locale, setLocale] = React.useState<any>();
