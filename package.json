@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build:core": "cd ./core && yarn build",
+    "storybook": "cd ./core && yarn storybook",
     "docs": "yarn build:core && cd ./docs && yarn dev --port=3001"
   },
   "workspaces": [

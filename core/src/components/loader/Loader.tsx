@@ -7,7 +7,9 @@ import {
   PolymorphicRef,
 } from "../../types";
 
-export interface SharedLoaderProps extends DefaultProps {}
+export interface SharedLoaderProps extends DefaultProps {
+  text?: React.ReactNode;
+}
 
 export type LoaderProps<C> = PolymorphicComponentProps<C, SharedLoaderProps>;
 
@@ -19,11 +21,12 @@ type LoaderComponent = (<C = "div">(
 
 const Loader: LoaderComponent = forwardRef(
   (props: LoaderProps<"div">, ref: PolymorphicRef<"div">) => {
+    const { text } = props;
     return (
       <LocalReceiver>
         {(locale: Locale["global"]) => (
           <div {...props} ref={ref}>
-            {locale.loading}
+            {text || locale.loading}
           </div>
         )}
       </LocalReceiver>
