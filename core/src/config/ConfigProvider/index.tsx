@@ -3,6 +3,7 @@ import LocaleProvider from "../LocaleProvider";
 import { LocalReceiver } from "../LocaleProvider/LocalReceiver";
 
 import type {
+  ConfigConsumerProps,
   ConfigProviderProps,
   Locale,
   ProviderChildrenProps,
@@ -63,5 +64,9 @@ const ConfigProvider: React.FC<ConfigProviderProps> & {
 };
 
 ConfigProvider.ConfigContext = ConfigContext;
+
+export const useConfigContext = (): ConfigConsumerProps => {
+  return React.useContext(ConfigContext);
+};
 
 export default ConfigProvider;

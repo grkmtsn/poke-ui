@@ -22,12 +22,10 @@ export type PolymorphicRef<C> = C extends React.ElementType
   ? React.ComponentPropsWithRef<C>["ref"]
   : never;
 
-export type PolymorphicComponentProps<
-  C,
-  Props = {}
-> = C extends React.ElementType
-  ? InheritedProps<C, Props & ComponentProp<C>> & { ref?: PolymorphicRef<C> }
-  : Props & { component: React.ElementType };
+export type PolymorphicComponentProps<C, Props = {}> =
+  C extends React.ElementType
+    ? InheritedProps<C, Props & ComponentProp<C>> & { ref?: PolymorphicRef<C> }
+    : Props & { component: React.ElementType };
 
 export interface DefaultProps<T extends string = never> {
   className?: string;
@@ -74,7 +72,7 @@ export type Theme = {
 
 // Locale Types
 export type Locale = {
-  locale: string;
+  locale: "tr" | "en";
   global: {
     loading: string;
   };
