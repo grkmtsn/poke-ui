@@ -1,10 +1,12 @@
 {
   "name": "poke-ui",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "docs/*"
-    ]
-  }
+  "scripts": {
+    "build:core": "cd ./core && yarn build",
+    "docs": "yarn build:core && cd ./docs && yarn dev --port=3001"
+  },
+  "workspaces": [
+    "core",
+    "docs"
+  ]
 }
