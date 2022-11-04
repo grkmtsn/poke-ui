@@ -55,6 +55,6 @@ export const createTheme = ({ type, customTheme = {}, className }: Theme) => {
   );
 };
 
-export type VariantProps<T> = Stitches.VariantProps<T>;
+export type VariantProps<T extends { [key: string]: any;[key: symbol]: any; }> = Stitches.VariantProps<T>;
 export type CSS = Stitches.CSS<typeof config>;
 export type StitchesTheme = typeof theme;
